@@ -123,8 +123,8 @@ $display.on("click", ".gif", function() {
   if (state === "still") {
     $(this).attr("src", $(this).attr("data-animate"));
     $(this).attr("data-state", "animate");
-    $(this).css("border-color", "blue");
-    $(this).css("border-width", "2");
+    $(this).css("border-color", "yellow");
+    $(this).css("border-width", "1");
     $(this).css("border-style", "solid");
   } else {
     $(this).attr("src", $(this).attr("data-still"));
@@ -162,7 +162,7 @@ $("#resultsHeading").on("click","#deleteBtn", function(){
 });
 
 renderButtons();
-displayResults("super heroes");
+displayResults("superman");
 }); // END OF document.ready()
 
 

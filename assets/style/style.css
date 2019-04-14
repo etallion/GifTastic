@@ -55,6 +55,10 @@ img{
     text-align: left;
 }
 
+#eachGIF.hover{
+    color:lightblue;
+}
+
 
 @media only screen and (max-width: 500px)  {
 
