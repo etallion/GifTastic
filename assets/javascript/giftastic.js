@@ -20,7 +20,7 @@ function renderButtons(){
 
     buttons.forEach(function(subject){
         console.log(subject);
-        $display.text("Hello Computer");
+        // $display.text("Hello Computer");
         var $newBtn = $("<button>");
         $newBtn.attr("data-value",subject);
         $newBtn.text(subject);
@@ -34,8 +34,9 @@ function renderButtons(){
 //Button Click Handler, shows 10 GIFs ------------------------------------------------
 $buttonDiv.on("click", ".myButton", function(){
     console.log("click button");
-    $display.empty();
-
+    $("#col1").empty();
+    $("#col2").empty();
+    $("#col3").empty();
     // Grabbing and storing the data-value property value from the button
     var newSubject = $(this).attr("data-value");
 
@@ -61,8 +62,8 @@ $buttonDiv.on("click", ".myButton", function(){
 
           // Creating and storing a div tag
           var gifDiv = $("<div>");
-          // gifDiv.addClass("eachGIF");
-          gifDiv.addClass("col-sm");
+          gifDiv.addClass("eachGIF");
+          // gifDiv.addClass("col-sm");
        
           // Creating a paragraph tag with the result item's rating
           var p = $("<p>").text("Rating: " + results[i].rating);
@@ -70,26 +71,28 @@ $buttonDiv.on("click", ".myButton", function(){
           // Creating and storing an image tag
           var subjectImg = $("<img>");
           // Setting the src attribute of the image to a property pulled off the result item
-          subjectImg.attr("src", results[i].images.fixed_width_still.url);
+          
+          subjectImg.attr("src", results[i].images["480w_still"].url);
           subjectImg.attr("data-animate", results[i].images.fixed_height.url);
           subjectImg.attr("data-still", results[i].images.fixed_width_still.url);
           subjectImg.attr("data-state", "still");
           subjectImg.addClass("gif");
 
+          gifDiv.prepend(subjectImg);
+          gifDiv.prepend(p);
           
-            if(i%2===0){
-                console.log("new row ---------------");
-                //add new row after every 3 images are added
-                var $newRow = $("<div>");
-                 $newRow.addClass("row");
-                 $display.append($newRow);
-            } 
-        
-          gifDiv.append(subjectImg);
-          gifDiv.append(p);
-
-          // Prependng the gifDiv to the HTML page in the "#displayGIF" div
-          $("#displayGIF").append(gifDiv);
+          // Prepend GIF into 3 columns
+            if(i%3===0){
+              console.log("0000000000");
+              // Prependng the gifDiv to the HTML page in the "#displayGIF" div
+              $("#col1").prepend(gifDiv);
+            } else if (i%3===1){
+              console.log("11111111");
+              $("#col2").prepend(gifDiv);
+              console.log("2222222222");
+            } else if (i%3===2){
+              $("#col3").prepend(gifDiv);
+            }
         }
       });
 });

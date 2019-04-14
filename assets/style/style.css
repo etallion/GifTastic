@@ -1,8 +1,10 @@
 body{
-
+    background-color: rgb(50, 54, 57);
 }
 
-
+img{
+    width: 100%;
+}
 
 
 
@@ -11,11 +13,11 @@ body{
 }
 
 .eachGIF{
-    border-style: solid;
-    border-width: 1px;
-    border-color: lightblue;
-    margin: 5px 5px 5px 5px;
-    padding: 5px 5px 5px 5px;
+    /* border-style: solid; */
+    /* border-width: 1px; */
+    /* border-color: lightblue; */
+    /* margin: 0px 0px 0px 0px; */
+    /* padding: 2px 2px 3px 3px; */
 }
 
 
@@ -57,8 +59,8 @@ body{
         min-width: 320px;
     }
 
-    .col-1{
-        width: 0px;
-    }
+   
+    
+
 
 }
