@@ -10,6 +10,10 @@ img{
 
 .navbar{
     color: rgb(137, 170, 240);
+    background-color: silver;
+    border-width: 0px 0px 3px 0px;
+    border-color : white;
+    border-style: solid;
 }
 
 .eachGIF{
@@ -18,6 +22,7 @@ img{
     /* border-color: lightblue; */
     /* margin: 0px 0px 0px 0px; */
     /* padding: 2px 2px 3px 3px; */
+    color: gray;
 }
 
 
@@ -50,7 +55,7 @@ img{
     text-align: center;
 }
 #resultsHeading{
-    color: white;
+    color: gray;
     padding: 5px 15px 5px 15px;
     text-align: left;
 }

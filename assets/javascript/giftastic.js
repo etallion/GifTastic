@@ -54,7 +54,7 @@ function displayResults(newSubject){
 
       //Update the resultsHeading
       $("#resultsHeading").empty();
-      $("#resultsHeading").html('<span>Showing 10 results for : ' + newSubject + ' <button class="btn btn-sm" id="deleteBtn" data-value="'+newSubject+'">Delete button</button>');
+      $("#resultsHeading").html('<span>Showing 10 results for : ' + newSubject + ' <button class="btn btn-outline-secondary btn-sm" id="deleteBtn" data-value="'+newSubject+'">Delete button</button>');
 
 
     // Performing an AJAX request with the queryURL
@@ -140,8 +140,14 @@ $display.on("click", ".gif", function() {
 $("#addButton").on("click", function(){
     event.preventDefault();
     console.log("new search");
+    if($("#newSearch").val() != "" && (buttons.indexOf($("#newSearch").val()) < 0)){
     buttons.push($("#newSearch").val());
     renderButtons();
+    displayResults($("#newSearch").val());
+    } else {
+      //invalid entry
+      alert("Please enter a valid entry.");
+    }
 
 });
 
@@ -156,8 +162,6 @@ $("#resultsHeading").on("click","#deleteBtn", function(){
   renderButtons();
   $("#resultsHeading").empty();
   $("#resultsHeading").html('<span>Showing 10 results for : ' + $(this).attr("data-value"));
-
-
 
 });
 
