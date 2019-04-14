@@ -1,10 +1,10 @@
-var buttons = ["microchip", 
-               "commodore 64", 
-               "apple 2",
-               "steve jobs",
-               "bill gates",
-               "javascript",
-               "mainframe"];
+var buttons = ["superman", 
+               "batman", 
+               "wonder woman",
+               "catwoman",
+               "the hulk",
+               "spiderman",
+               "shazam"];
 
 
 
@@ -18,11 +18,14 @@ function renderButtons(){
     $buttonDiv.empty();
     console.log("renderButtons");
 
-    buttons.forEach(function(subject){
+    buttons.forEach(function(subject,i){
         console.log(subject);
         // $display.text("Hello Computer");
         var $newBtn = $("<button>");
+        $newBtn.addClass("btn");
+        $newBtn.addClass("btn-outline-primary");
         $newBtn.attr("data-value",subject);
+        $newBtn.attr("index",i);
         $newBtn.text(subject);
         $newBtn.addClass("myButton");
 
@@ -31,7 +34,7 @@ function renderButtons(){
     });
 };
 
-//Button Click Handler, shows 10 GIFs ------------------------------------------------
+//Button Click Handler ------------------------------------------------
 $buttonDiv.on("click", ".myButton", function(){
     console.log("click button");
     $("#col1").empty();
@@ -40,9 +43,19 @@ $buttonDiv.on("click", ".myButton", function(){
     // Grabbing and storing the data-value property value from the button
     var newSubject = $(this).attr("data-value");
 
+    displayResults(newSubject);
+});
+
+//display gifs, shows 10 GIFs ------------------------------------------------
+function displayResults(newSubject){
     // Constructing a queryURL using the animal name
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
       newSubject + "&api_key=CrX8JL8Xml3HttBQHBLoftYCWB2ZBYvq&limit=10";
+
+      //Update the resultsHeading
+      $("#resultsHeading").empty();
+      $("#resultsHeading").html('<span>Showing 10 results for : ' + newSubject + ' <button class="btn btn-sm" id="deleteBtn" data-value="'+newSubject+'">Delete button</button>');
+
 
     // Performing an AJAX request with the queryURL
     $.ajax({
@@ -71,15 +84,16 @@ $buttonDiv.on("click", ".myButton", function(){
           // Creating and storing an image tag
           var subjectImg = $("<img>");
           // Setting the src attribute of the image to a property pulled off the result item
-          
+
           subjectImg.attr("src", results[i].images["480w_still"].url);
           subjectImg.attr("data-animate", results[i].images.fixed_height.url);
           subjectImg.attr("data-still", results[i].images.fixed_width_still.url);
           subjectImg.attr("data-state", "still");
           subjectImg.addClass("gif");
 
-          gifDiv.prepend(subjectImg);
           gifDiv.prepend(p);
+          gifDiv.prepend(subjectImg);
+          
           
           // Prepend GIF into 3 columns
             if(i%3===0){
@@ -95,7 +109,7 @@ $buttonDiv.on("click", ".myButton", function(){
             }
         }
       });
-});
+};
 
 
 //Pause/Play GIF image Click Handler ------------------------------------------------
@@ -109,10 +123,16 @@ $display.on("click", ".gif", function() {
   if (state === "still") {
     $(this).attr("src", $(this).attr("data-animate"));
     $(this).attr("data-state", "animate");
+    $(this).css("border-color", "blue");
+    $(this).css("border-width", "2");
+    $(this).css("border-style", "solid");
   } else {
     $(this).attr("src", $(this).attr("data-still"));
     $(this).attr("data-state", "still");
+    $(this).attr("data-state", "animate");
+    $(this).css("border-width", "0");
   }
+  
 });
 
 
@@ -124,7 +144,25 @@ $("#addButton").on("click", function(){
     renderButtons();
 
 });
+
+//Deletes  Button ----------------------------------------------------------------------------
+$("#resultsHeading").on("click","#deleteBtn", function(){
+  event.preventDefault();
+  console.log("delete button " + $(this).attr("data-value") + " at position: " +$(this).attr("index"));
+  
+  var myIndex = buttons.indexOf($(this).attr("data-value"));
+
+  buttons.splice(myIndex,1);
+  renderButtons();
+  $("#resultsHeading").empty();
+  $("#resultsHeading").html('<span>Showing 10 results for : ' + $(this).attr("data-value"));
+
+
+
+});
+
 renderButtons();
+displayResults("super heroes");
 }); // END OF document.ready()
 
 

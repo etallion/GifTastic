@@ -46,8 +46,13 @@ img{
 
 #buttons{
     color: white;
-    height : 120px;
     padding: 5px 15px 5px 15px;
+    text-align: center;
+}
+#resultsHeading{
+    color: white;
+    padding: 5px 15px 5px 15px;
+    text-align: left;
 }
 
 
