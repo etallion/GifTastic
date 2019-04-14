@@ -1,0 +1,64 @@
+body{
+
+}
+
+
+
+
+
+.navbar{
+    color: rgb(137, 170, 240);
+}
+
+.eachGIF{
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightblue;
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+}
+
+
+#displayBtn{
+    position: absolute;
+    width: 100%;
+    top: 38%;
+    /* z-index: 2; */
+    text-align: center;
+    /* opacity: 2; */
+}
+
+#myContainer{
+    /* position: absolute;*/
+    /* left : 20%; */
+    text-align: center; 
+    background-color: rgb(150, 25, 25);
+    /* opacity: 0.8; */
+    /* color : white; */
+   /* height: 600px;
+    width: 60%;
+    min-width: 320px;
+    margin: 10px 5px 0px 5px;
+    padding: 5px 0px 10px 0px; */
+}
+
+#buttons{
+    color: white;
+    height : 120px;
+    padding: 5px 15px 5px 15px;
+}
+
+
+@media only screen and (max-width: 500px)  {
+
+    #gameBoard{
+        left : 5%;
+        width: 90%;
+        min-width: 320px;
+    }
+
+    .col-1{
+        width: 0px;
+    }
+
+}
